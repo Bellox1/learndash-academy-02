@@ -1,24 +1,211 @@
-<!-- Article sélectionné -->
-<div *ngIf="article" class="w-full flex justify-center mt-8">
-  <div class="w-full max-w-3xl bg-white rounded shadow p-6 text-center mx-auto">
-    <h1 class="text-3xl font-bold mb-2">{{ article.title }}</h1>
-    <p class="text-gray-600 mb-4">{{ article.date }}</p>
-
+<!-- Articles 1 et 2 : page classique avec accordéon -->
+<div
+  *ngIf="article && (article.id === 1 || article.id === 2)"
+  class="w-full flex justify-center mt-8"
+>
+  <div class="w-full max-w-5xl bg-white rounded shadow p-6 text-center mx-auto">
     <div class="mb-4">
-      <img [src]="article.image" [alt]="article.title" class="w-full max-w-md mx-auto rounded shadow-md" />
+      <img [src]="article.image" [alt]="article.title" class="article-image" />
     </div>
-
-    <p class="text-lg text-justify">{{ article.description }}</p>
+    <header class="course-header">
+      <h1 class="text-3xl font-normal mb-2 text-left">{{ article.title }}</h1>
+      <div
+        class="course-status-box flex justify-between items-center bg-gray-100 rounded-lg p-6 my-6"
+      >
+        <div class="flex-1 text-center">
+          <div class="text-sm text-gray-500 mb-2">Current Status</div>
+          <span
+            class="inline-block bg-blue-700 text-white px-5 py-2 rounded-full font-semibold text-sm"
+            >NOT ENROLLED</span
+          >
+        </div>
+        <div class="border-l h-12 mx-6"></div>
+        <div class="flex-1 text-center">
+          <div class="text-sm text-gray-500 mb-2">Price</div>
+          <span class="text-2xl font-bold text-gray-700">{{
+            article.price
+          }}</span>
+        </div>
+        <div class="border-l h-12 mx-6"></div>
+        <div class="flex-1 text-center">
+          <div class="text-sm text-gray-500 mb-2">Get Started</div>
+          <button
+            class="bg-blue-700 text-white px-5 py-2 rounded-full font-semibold text-sm hover:bg-blue-800 transition"
+          >
+            Login to Enroll
+          </button>
+        </div>
+      </div>
+    </header>
+    <section class="course-description">
+      <p class="text-left italic">You are not enrolled in this course.</p>
+      <br />
+      <h1 class="text-2xl font-bold mb-2 text-left">Course Description</h1>
+      <br />
+      <p class="text-lg text-justify">{{ article.description2 }}</p>
+      <br />
+      <h3 class="text-lg font-bold mb-2 text-left">
+        Key concepts covered include:
+      </h3>
+      <br />
+      <ul class="list-disc list-inside text-left">
+        <li *ngFor="let concept of article.keyConcepts">{{ concept }}</li>
+      </ul>
+      <br />
+      <div *ngIf="article.id === 1" class="mb-4 text-left text-gray-700">
+        Risus vitae laoreet dictum, turpis dolor rhoncus nulla, in placerat
+        dolor felis ut mi. Morbi mattis elit eget mauris semper, quis
+        ullamcorper velit facilisis.
+      </div>
+      <div
+        *ngIf="article.id === 2"
+        class="mb-2 text-left text-lg font-semibold text-gray-700"
+      >
+        Price: {{ article.price }}
+      </div>
+    </section>
+    <section class="course-content text-left mt-8 border-t pt-6">
+      <div class="course-content-header flex justify-between items-center mb-4">
+        <h2 class="text-2xl font-bold">Course Content</h2>
+        <button
+          class="expand-all-button bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition"
+        >
+          Expand All
+        </button>
+      </div>
+      <div class="accordion space-y-2">
+        <div
+          *ngFor="let section of article.sections; let i = index"
+          [ngClass]="{ 'accordion-item': true, locked: section.isLocked }"
+        >
+          <div
+            class="accordion-item-main flex items-center"
+            style="position: relative"
+          >
+            <div class="accordion-circle mr-4"></div>
+            <div *ngIf="section.isLocked" class="access-denied-message">
+              You don't currently have access to this content
+            </div>
+            <div class="accordion-title flex-1">
+              <h3 class="text-lg font-semibold">{{ section.title }}</h3>
+              <span *ngIf="section.topicCount > 0"
+                >{{ section.topicCount }} Topics</span
+              >
+            </div>
+            <button
+              *ngIf="section.topicCount > 0"
+              (click)="toggleSection(i)"
+              class="accordion-expand text-blue-600 hover:underline ml-4"
+            >
+              {{ expandedSection === i ? "Collapse" : "Expand" }}
+            </button>
+          </div>
+          <div *ngIf="expandedSection === i" class="lesson-content-panel">
+            <div
+              class="lesson-header flex justify-between items-center bg-blue-600 text-white p-4 rounded-t"
+            >
+              <span><i class="fa fa-book mr-2"></i>Lesson Content</span>
+              <span class="font-bold">0% COMPLETE</span>
+              <span>0/{{ section.topics?.length || 0 }} Steps</span>
+            </div>
+            <ul class="lesson-steps bg-white p-4 rounded-b">
+              <li
+                *ngFor="let topic of section.topics"
+                class="py-2 flex items-center"
+              >
+                <span class="mr-2">&#9675;</span>
+                {{ topic.title }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </div>
 
-<!-- Articles similaires -->
-<div *ngIf="relatedArticles.length > 0" class="w-full px-0 mt-0">
-  <h2 class="text-2xl font-semibold text-center mb-0">Articles similaires</h2>
-  <div class="grid grid-cols-2 sm:grid-cols-4 gap-0 justify-items-center">
-    <div *ngFor="let a of relatedArticles" class="w-60 text-center">
-      <img [src]="a.image" [alt]="a.title" class="w-60 h-60 object-cover rounded shadow mb-0" />
-      <p class="font-medium text-base truncate">{{ a.title }}</p>
+<!-- Article 3 : style LearnDash landing page -->
+<div *ngIf="article && article.id === 3" class="content-landing-banner">
+  <div class="content-landing-banner-inner">
+    <div>
+      <div class="author-left-row">
+        <img
+          src="https://websitedemos.net/learndash-academy-02/wp-content/uploads/sites/457/2020/06/tutor-img.jpg"
+          alt="Chris Parker"
+          class="author-img-large"
+        />
+        <div>
+          <div class="author-name">Chris Parker</div>
+          <div class="author-role">Professional Marketer</div>
+        </div>
+      </div>
+      <div class="author-desc-below">
+        Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis
+        voluptatibus maiores alias consequatur aut perferendis doloribus
+        asperiores repellat.
+      </div>
+    </div>
+    <div class="desc-card">
+      <h2>Course Description</h2>
+      <p>{{ article.description2 }}</p>
+      <button class="cta-btn">Take This Course</button>
+      <div class="review-block">
+        <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+        <div class="review-title">Amazing Course</div>
+        <div class="review-text">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
+          tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+        </div>
+        <div class="review-author">George Roman</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="article && article.id === 3" class="course-details-section">
+  <h2 class="course-details-title">Course Details</h2>
+  <div class="course-details-cards">
+    <div class="detail-card bordered-right">
+      <div class="detail-icon">🕒</div>
+      <div class="detail-label">Course Duration</div>
+      <div class="detail-value">Approx. 2 months</div>
+    </div>
+    <div class="detail-card bordered-right">
+      <div class="detail-icon">$</div>
+      <div class="detail-label">Course Price</div>
+      <div class="detail-value">$ 1.00</div>
+    </div>
+    <div class="detail-card">
+      <div class="detail-icon">🎓</div>
+      <div class="detail-label">Course Level</div>
+      <div class="detail-value">Beginner</div>
+    </div>
+  </div>
+  <div class="course-details-content">
+    <div class="course-desc-col">
+      <h3>Course Description</h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.
+      </p>
+      <p>
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+      <button class="cta-btn mt-4">Take This Course</button>
+    </div>
+    <div class="course-features-col">
+      <h3 class="font-bold">Key Features</h3>
+
+      <ul>
+        <li>Duis aute irure dolor in</li>
+        <li>Ut enim ad minim veniam</li>
+        <li>Excepteur sint occaecat</li>
+        <li>Mollit anim id est laborum</li>
+        <li>Consectetur adipiscing elit</li>
+      </ul>
     </div>
   </div>
 </div>

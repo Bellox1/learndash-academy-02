@@ -5,6 +5,7 @@ import { ArticleService } from './article.service';
 import { CommonModule } from '@angular/common';
 import { DetailArticleComponent } from '../detail-article/detail-article.component';
 
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -22,8 +23,8 @@ export class HomeComponent {
   }
 
   navigateToDetail(article: IArticle) {
-    const category = article.category.toLowerCase();
-    this.router.navigate([`/detail-article/${category}`], { queryParams: { id: article.id } });
+     const category = article.category.toLowerCase();
+     this.router.navigate([`/detail-article/${category}`], { queryParams: { id: article.id } });
   }
 
   selectArticle(article: IArticle) {
