@@ -1,7 +1,27 @@
 <div class="myaccount-container">
-  <button class="login-btn" *ngIf="!showLoginModal" (click)="openLoginModal()">
+  <button class="login-btn" (click)="openLoginModal()">
     <i class="fa fa-user login-icon"></i>
     <span class="login-text">Login</span>
   </button>
-  <app-login-modal *ngIf="showLoginModal" [show]="true" (close)="closeLoginModal()"></app-login-modal>
+  <app-courses></app-courses>
+</div>
+
+<!-- Modal overlay et box en dehors du flux principal -->
+<div *ngIf="showLoginModal">
+  <div class="modal-overlay"></div>
+  <div class="login-form-box modal-centered">
+    <button class="form-close" (click)="closeLoginModal()">&times;</button>
+    <div class="modal-title">Connexion</div>
+    <form>
+      <label class="modal-label" for="email">Email</label>
+      <div class="modal-input-group">
+        <input class="modal-input" id="email" type="email" placeholder="Votre email" required />
+      </div>
+      <label class="modal-label" for="password">Mot de passe</label>
+      <div class="modal-input-group">
+        <input class="modal-input" id="password" type="password" placeholder="Votre mot de passe" required />
+      </div>
+      <button class="modal-login-btn" type="submit">Se connecter</button>
+    </form>
+  </div>
 </div>

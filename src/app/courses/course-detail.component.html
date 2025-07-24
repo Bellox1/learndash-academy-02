@@ -1,0 +1,31 @@
+<div *ngIf="course" class="course-detail-container">
+  <h2 class="course-detail-title">{{ course.title }}</h2>
+  <img [src]="course.image" [alt]="course.title" class="course-detail-image">
+
+  <div class="course-detail-meta-box">
+    <div class="meta-col">
+      <div class="meta-label">Current Status</div>
+      <button class="meta-status-btn">NOT ENROLLED</button>
+    </div>
+    <div class="meta-divider"></div>
+    <div class="meta-col">
+      <div class="meta-label">Price</div>
+      <div class="meta-price">{{ course.badge ? course.badge : course.price }}</div>
+    </div>
+    <div class="meta-divider"></div>
+    <div class="meta-col">
+      <div class="meta-label">Get Started</div>
+      <button class="meta-enroll-btn">Login to Enroll</button>
+    </div>
+  </div>
+
+  <div class="course-detail-message">
+    <em>You are not yet enrolled in this course.</em>
+  </div>
+
+  <div class="course-detail-section">
+    <h3>Course Description</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porta augue tortor.</p>
+    <p>Id placerat libero viverra sit amet. Nulla laoreet mattis orci ut rhoncus. Nullam imperdiet eget lectus ut vehicula. Phasellus lobortis turpis ac est venenatis sodales. Pellentesque auctor vulputate accumsan.</p>
+  </div>
+</div> 

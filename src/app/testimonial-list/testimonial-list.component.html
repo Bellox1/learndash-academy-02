@@ -1,0 +1,14 @@
+<section class="testimonials-section">
+  <div class="testimonials-grid">
+    <div class="testimonial-card" *ngFor="let t of testimonials">
+      <p>{{ t.text }}</p>
+      <div class="testimonial-user">
+        <img [src]="t.image" [alt]="t.name" class="testimonial-avatar">
+        <div>
+          <strong>{{ t.name }}</strong><br>
+          <span class="testimonial-country">{{ t.country }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
