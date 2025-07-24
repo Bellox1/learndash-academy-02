@@ -4,16 +4,13 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
       <!-- Left: Team Cards (vertical stack, décalage homme en bas à droite) -->
       <div class="md:col-span-2 flex flex-col gap-8 justify-center relative min-h-[520px]">
-        <!-- Lisa Green Card (en haut à gauche) -->
-        <div class="bg-white rounded-lg shadow-lg flex flex-col items-center p-4 w-full max-w-xs mx-0 md:mx-0 md:ml-0 md:mt-0 z-10">
-          <img src="https://websitedemos.net/learndash-academy-02/wp-content/uploads/sites/457/2019/05/about-1-free-img.jpg" alt="Lisa Green" class="rounded-lg w-60 h-60 object-cover mb-4" />
-          <div class="text-lg font-medium text-gray-800 text-center">Lisa Green - CMO</div>
-        </div>
-        <!-- Dr. John Smith Card (décalée en bas à droite) -->
-        <div class="bg-white rounded-lg shadow-lg flex flex-col items-center p-4 w-full max-w-xs mx-0 md:ml-32 md:mt-16 z-0">
-          <img src="https://websitedemos.net/learndash-academy-02/wp-content/uploads/sites/457/2019/05/about-2-free-img.jpg" alt="Dr. John Smith" class="rounded-lg w-60 h-60 object-cover mb-4" />
-          <div class="text-lg font-medium text-gray-800 text-center">Dr. John Smith — Founder & CEO.</div>
-        </div>
+        <!-- Team Cards -->
+        <ng-container *ngFor="let member of teamMembers; let i = index">
+          <div class="bg-white rounded-lg shadow-lg flex flex-col items-center p-4 w-full max-w-xs mx-0 md:mx-0" [ngClass]="member.cardStyle + ' ' + member.cardClass">
+            <img [src]="member.img" [alt]="member.name" [title]="member.name" title="image" class="rounded-lg w-60 h-60 object-cover mb-4" />
+            <div class="text-lg font-medium text-gray-800 text-center">{{ member.name }}</div>
+          </div>
+        </ng-container>
       </div>
       <!-- Right: Our Story -->
       <div class="bg-gray-50 rounded-xl shadow p-8">
@@ -35,58 +32,21 @@
   </div>
   <section class="max-w-5xl mx-auto mb-16 p-20">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <!-- Instructor 1 -->
-      <div class="bg-white rounded-lg shadow p-6 flex items-center">
-        <img src="https://websitedemos.net/learndash-academy-02/wp-content/uploads/sites/457/2019/06/instructor-1-free-img.jpg" alt="Jack Lee" class="w-32 h-32 object-cover rounded-lg mr-6 shadow" />
-        <div>
-          <h3 class="text-lg font-semibold mb-2">Jack Lee</h3>
-          <p class="text-gray-500 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          <div class="flex space-x-3">
-            <span class="text-blue-600"><i class="fab fa-facebook-f"></i></span>
-            <span class="text-blue-600"><i class="fab fa-twitter"></i></span>
-            <span class="text-blue-600"><i class="fab fa-linkedin-in"></i></span>
+      <!-- Instructors -->
+      <ng-container *ngFor="let instructor of instructors">
+        <div class="bg-white rounded-lg shadow p-6 flex items-center">
+          <img [src]="instructor.img" [alt]="instructor.name" [title]="instructor.name" title="image" class="w-32 h-32 object-cover rounded-lg mr-6 shadow" />
+          <div>
+            <h3 class="text-lg font-semibold mb-2">{{ instructor.name }}</h3>
+            <p class="text-gray-500 mb-3">{{ instructor.desc }}</p>
+            <div class="flex space-x-3">
+              <span class="text-blue-600"><i class="fab fa-facebook-f"></i></span>
+              <span class="text-blue-600"><i class="fab fa-twitter"></i></span>
+              <span class="text-blue-600"><i class="fab fa-linkedin-in"></i></span>
+            </div>
           </div>
         </div>
-      </div>
-      <!-- Instructor 2 -->
-      <div class="bg-white rounded-lg shadow p-6 flex items-center">
-        <img src="https://websitedemos.net/learndash-academy-02/wp-content/uploads/sites/457/2019/06/instructor-2-free-img.jpg" alt="Zoya Hank" class="w-32 h-32 object-cover rounded-lg mr-6 shadow" />
-        <div>
-          <h3 class="text-lg font-semibold mb-2">Zoya Hank</h3>
-          <p class="text-gray-500 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          <div class="flex space-x-3">
-            <span class="text-blue-600"><i class="fab fa-facebook-f"></i></span>
-            <span class="text-blue-600"><i class="fab fa-twitter"></i></span>
-            <span class="text-blue-600"><i class="fab fa-linkedin-in"></i></span>
-          </div>
-        </div>
-      </div>
-      <!-- Instructor 3 -->
-      <div class="bg-white rounded-lg shadow p-6 flex items-center">
-        <img src="https://websitedemos.net/learndash-academy-02/wp-content/uploads/sites/457/2019/06/instructor-3-free-img.jpg" alt="Alex Jones" class="w-32 h-32 object-cover rounded-lg mr-6 shadow" />
-        <div>
-          <h3 class="text-lg font-semibold mb-2">Alex Jones</h3>
-          <p class="text-gray-500 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          <div class="flex space-x-3">
-            <span class="text-blue-600"><i class="fab fa-facebook-f"></i></span>
-            <span class="text-blue-600"><i class="fab fa-twitter"></i></span>
-            <span class="text-blue-600"><i class="fab fa-linkedin-in"></i></span>
-          </div>
-        </div>
-      </div>
-      <!-- Instructor 4 -->
-      <div class="bg-white rounded-lg shadow p-6 flex items-center">
-        <img src="https://websitedemos.net/learndash-academy-02/wp-content/uploads/sites/457/2019/06/instructor-4-free-img.jpg" alt="Chris Parker" class="w-32 h-32 object-cover rounded-lg mr-6 shadow" />
-        <div>
-          <h3 class="text-lg font-semibold mb-2">Chris Parker</h3>
-          <p class="text-gray-500 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          <div class="flex space-x-3">
-            <span class="text-blue-600"><i class="fab fa-facebook-f"></i></span>
-            <span class="text-blue-600"><i class="fab fa-twitter"></i></span>
-            <span class="text-blue-600"><i class="fab fa-linkedin-in"></i></span>
-          </div>
-        </div>
-      </div>
+      </ng-container>
     </div>
   </section>
 
@@ -95,22 +55,12 @@
     <div class="max-w-5xl mx-auto">
       <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-[#344054]">Number Speaks</h2>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-        <div>
-          <div class="text-4xl md:text-5xl font-bold mb-2 text-[#344054]">10+</div>
-          <div class="text-gray-600 text-lg">Awards</div>
-        </div>
-        <div>
-          <div class="text-4xl md:text-5xl font-bold mb-2 text-[#344054]">5+</div>
-          <div class="text-gray-600 text-lg">Countries</div>
-        </div>
-        <div>
-          <div class="text-4xl md:text-5xl font-bold mb-2 text-[#344054]">12+</div>
-          <div class="text-gray-600 text-lg">Partners</div>
-        </div>
-        <div>
-          <div class="text-4xl md:text-5xl font-bold mb-2 text-[#344054]">7K+</div>
-          <div class="text-gray-600 text-lg">Students</div>
-        </div>
+        <ng-container *ngFor="let number of numbers">
+          <div>
+            <div class="text-4xl md:text-5xl font-bold mb-2 text-[#344054]">{{ number.value }}</div>
+            <div class="text-gray-600 text-lg">{{ number.label }}</div>
+          </div>
+        </ng-container>
       </div>
     </div>
   </section>
@@ -120,50 +70,18 @@
     <div class="max-w-6xl mx-auto px-2">
       <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-[#344054]">What Our Students Have to Say</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <!-- Testimonial 1 -->
-        <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col justify-between">
-          <p class="text-gray-700 mb-8">Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
-          <div class="flex items-center mt-auto">
-            <img src="https://websitedemos.net/learndash-academy-02/wp-content/uploads/sites/457/2019/05/testimonial4-free-img.jpg" alt="Kelvin Black" class="w-12 h-12 rounded-full mr-4">
-            <div>
-              <div class="font-bold text-[#344054]">Kelvin Black</div>
-              <div class="text-gray-500 text-sm">From Dallas, USA</div>
+        <ng-container *ngFor="let testimonial of testimonials">
+          <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col justify-between">
+            <p class="text-gray-700 mb-8">{{ testimonial.text }}</p>
+            <div class="flex items-center mt-auto">
+              <img [src]="testimonial.img" [alt]="testimonial.name" [title]="testimonial.name" title="image" class="w-12 h-12 rounded-full mr-4">
+              <div>
+                <div class="font-bold text-[#344054]">{{ testimonial.name }}</div>
+                <div class="text-gray-500 text-sm">{{ testimonial.location }}</div>
+              </div>
             </div>
           </div>
-        </div>
-        <!-- Testimonial 2 -->
-        <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col justify-between">
-          <p class="text-gray-700 mb-8">Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
-          <div class="flex items-center mt-auto">
-            <img src="https://websitedemos.net/learndash-academy-02/wp-content/uploads/sites/457/2019/05/testimonial1-free-img.jpg" alt="Zasha Swan" class="w-12 h-12 rounded-full mr-4">
-            <div>
-              <div class="font-bold text-[#344054]">Zasha Swan</div>
-              <div class="text-gray-500 text-sm">From Australia</div>
-            </div>
-          </div>
-        </div>
-        <!-- Testimonial 3 -->
-        <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col justify-between">
-          <p class="text-gray-700 mb-8">Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
-          <div class="flex items-center mt-auto">
-            <img src="https://websitedemos.net/learndash-academy-02/wp-content/uploads/sites/457/2019/05/testimonial3-free-img.jpg" alt="Frank Jones" class="w-12 h-12 rounded-full mr-4">
-            <div>
-              <div class="font-bold text-[#344054]">Frank Jones</div>
-              <div class="text-gray-500 text-sm">From Japan</div>
-            </div>
-          </div>
-        </div>
-        <!-- Testimonial 4 -->
-        <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col justify-between">
-          <p class="text-gray-700 mb-8">Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
-          <div class="flex items-center mt-auto">
-            <img src="https://websitedemos.net/learndash-academy-02/wp-content/uploads/sites/457/2019/05/testimonial2-free-img.jpg" alt="Jack Browwn" class="w-12 h-12 rounded-full mr-4">
-            <div>
-              <div class="font-bold text-[#344054]">Jack Browwn</div>
-              <div class="text-gray-500 text-sm">From London, UK</div>
-            </div>
-          </div>
-        </div>
+        </ng-container>
       </div>
     </div>
   </section>
