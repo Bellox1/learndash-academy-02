@@ -1,1 +1,7 @@
-<p>myaccount works!</p>
+<div class="myaccount-container">
+  <button class="login-btn" *ngIf="!showLoginModal" (click)="openLoginModal()">
+    <i class="fa fa-user login-icon"></i>
+    <span class="login-text">Login</span>
+  </button>
+  <app-login-modal *ngIf="showLoginModal" [show]="true" (close)="closeLoginModal()"></app-login-modal>
+</div>
