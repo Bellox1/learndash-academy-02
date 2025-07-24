@@ -9,15 +9,15 @@ import { IArticle } from '../home/article.interface';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './detail-article.component.html',
-  styleUrls: ['./detail-article.component.css']
+  styleUrls: ['./detail-article.component.css'],
 })
 export class DetailArticleComponent implements OnInit {
   @Input() article?: IArticle;
   @Input() articles: IArticle[] = [];
-
   category: string = '';
   id: number = 0;
   relatedArticles: IArticle[] = [];
+  expandedSection: number | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,7 +34,13 @@ export class DetailArticleComponent implements OnInit {
       this.category = this.article.category;
       this.id = this.article.id;
     }
+    this.relatedArticles = this.articleService.getRelatedArticles(
+      this.category,
+      this.id
+    );
+  }
 
-    this.relatedArticles = this.articleService.getRelatedArticles(this.category, this.id);
+  toggleSection(index: number) {
+    this.expandedSection = this.expandedSection === index ? null : index;
   }
 }

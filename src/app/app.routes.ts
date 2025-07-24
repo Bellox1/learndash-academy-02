@@ -11,7 +11,7 @@ export const routes: Routes = [
   { path: 'allcourses', component: AllcoursesComponent},
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'myaccount', component: MyaccountComponent},
+  { path: 'myaccount', component: MyaccountComponent },
   { path: 'detail-article/:category', component: DetailArticleComponent } // route pour le détail d'article
 
 ];
