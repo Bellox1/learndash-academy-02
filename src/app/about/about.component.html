@@ -1,1 +1,88 @@
-<p>About work!</p>
+<main class="bg-white w-full min-h-screen py-12 px-4 md:px-0">
+  <!-- About Us Section (Hero + Our Story) -->
+  <section class="max-w-6xl mx-auto mb-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+      <!-- Left: Team Cards (vertical stack, décalage homme en bas à droite) -->
+      <div class="md:col-span-2 flex flex-col gap-8 justify-center relative min-h-[520px]">
+        <!-- Team Cards -->
+        <ng-container *ngFor="let member of teamMembers; let i = index">
+          <div class="bg-white rounded-lg shadow-lg flex flex-col items-center p-4 w-full max-w-xs mx-0 md:mx-0" [ngClass]="member.cardStyle + ' ' + member.cardClass">
+            <img [src]="member.img" [alt]="member.name" [title]="member.name" title="image" class="rounded-lg w-60 h-60 object-cover mb-4" />
+            <div class="text-lg font-medium text-gray-800 text-center">{{ member.name }}</div>
+          </div>
+        </ng-container>
+      </div>
+      <!-- Right: Our Story -->
+      <div class="bg-gray-50 rounded-xl shadow p-8">
+        <h2 class="text-3xl font-bold mb-4 text-gray-800">Our Story</h2>
+        <p class="text-gray-700 text-lg mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin placerat, neque nec posuere tincidunt, dolor libero pharetra ex, nec iaculis metus nibh a libero. Suspendisse laoreet neque et commodo viverra. Nullam vestibulum urna sed turpis fringilla, ac sollicitudin augue interdum.</p>
+        <p class="text-gray-700 text-lg">Proin congue enim imperdiet tincidunt vulputate. Donec hendrerit, neque nec condimentum posuere, metus ipsum lacinia quam, eget porta nibh purus vel risus.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Meet Our Lead Instructors -->
+  <div class="flex justify-center mt-16">
+    <div class="bg-white shadow-lg rounded p-25 max-w-3xl w-full text-center ">
+      <h2 class="text-4xl font-bold text-gray-800 mb-4">Meet Our Lead Instructors</h2>
+      <p class="text-lg text-gray-700">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac eros ut dui bibendum ultricies. Maecenas egestas fringilla semper.
+      </p>
+    </div>
+  </div>
+  <section class="max-w-5xl mx-auto mb-16 p-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Instructors -->
+      <ng-container *ngFor="let instructor of instructors">
+        <div class="bg-white rounded-lg shadow p-6 flex items-center">
+          <img [src]="instructor.img" [alt]="instructor.name" [title]="instructor.name" title="image" class="w-32 h-32 object-cover rounded-lg mr-6 shadow" />
+          <div>
+            <h3 class="text-lg font-semibold mb-2">{{ instructor.name }}</h3>
+            <p class="text-gray-500 mb-3">{{ instructor.desc }}</p>
+            <div class="flex space-x-3">
+              <span class="text-blue-600"><i class="fab fa-facebook-f"></i></span>
+              <span class="text-blue-600"><i class="fab fa-twitter"></i></span>
+              <span class="text-blue-600"><i class="fab fa-linkedin-in"></i></span>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </section>
+
+  <!-- Number Speaks Section -->
+  <section class="bg-white py-12">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-[#344054]">Number Speaks</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <ng-container *ngFor="let number of numbers">
+          <div>
+            <div class="text-4xl md:text-5xl font-bold mb-2 text-[#344054]">{{ number.value }}</div>
+            <div class="text-gray-600 text-lg">{{ number.label }}</div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="bg-gray-50 py-16">
+    <div class="max-w-6xl mx-auto px-2">
+      <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-[#344054]">What Our Students Have to Say</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <ng-container *ngFor="let testimonial of testimonials">
+          <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col justify-between">
+            <p class="text-gray-700 mb-8">{{ testimonial.text }}</p>
+            <div class="flex items-center mt-auto">
+              <img [src]="testimonial.img" [alt]="testimonial.name" [title]="testimonial.name" title="image" class="w-12 h-12 rounded-full mr-4">
+              <div>
+                <div class="font-bold text-[#344054]">{{ testimonial.name }}</div>
+                <div class="text-gray-500 text-sm">{{ testimonial.location }}</div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </section>
+</main>

@@ -1,42 +1,250 @@
-<header class="relative w-full min-h-[80vh] flex flex-col bg-gradient-to-r from-blue-700 to-blue-500 overflow-hidden">
-  <!-- Image de fond floutée -->
-  <img src="https://i.imgur.com/0y8Ftya.jpg" alt="background" class="absolute inset-0 w-full h-full object-cover opacity-30 blur-sm pointer-events-none" />
+<header>
+  <div
+  class="relative w-full flex flex-col justify-center items-center overflow-hidden"
+  [ngClass]="{
+    'min-h-[500px] md:min-h-[600px] lg:min-h-[700px]': isHomeActive,
+    'min-h-[100px] md:min-h-[100px] lg:min-h-[100px]': isDetailArticleActive,
+    'min-h-[350px] md:min-h-[400px] lg:min-h-[450px]': !isHomeActive && !isDetailArticleActive
+  }"
+>
+  <!-- Image de fond -->
+  <img
+    *ngIf="isHomeActive"
+    src="https://websitedemos.net/learndash-academy-02/wp-content/uploads/sites/457/2019/06/ld2.jpg"
+    alt="background"
+    class="hidden md:block absolute inset-0 w-full h-full object-cover z-0"
+    style="object-position: left center;" />
 
-  <!-- Barre de navigation -->
-  <div class="relative z-10 w-full flex items-center justify-between px-8 pt-6">
-    <!-- Logo -->
-    <div class="flex items-center space-x-3">
-      <span class="inline-block">
-        <!-- SVG chapeau diplômé -->
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48" class="w-12 h-12 text-white"><circle cx="24" cy="24" r="24" fill="#1976d2"/><path fill="#fff" d="M24 13L6 20l18 7 14.5-5.5V29H42v-8L24 13zm0 2.18L36.44 20 24 24.82 11.56 20 24 15.18zM8 22.08v3.34c0 3.31 7.16 6 16 6s16-2.69 16-6v-3.34l-2 .76V25c0 1.66-5.37 4-14 4s-14-2.34-14-4v-2.16l-2-.76z"/></svg>
-      </span>
-      <span class="text-white font-bold text-2xl tracking-tight leading-tight select-none">
-        LearnDash<br>
-        <span class="text-sm font-normal tracking-widest">ACADEMY</span>
-      </span>
+  <!-- Overlay dégradé -->
+<div class="absolute inset-0 z-10"
+[ngStyle]="{
+  background: (isHomeActive && isDesktop)
+    ? 'linear-gradient(to right, rgba(59,182,247,0.85) 0%, rgba(10,83,190,0.93) 100%)'
+    : 'linear-gradient(to right, #0A53BE,  #0A53BE)'
+}">
+</div>
+
+  <!-- Top bar: logo + nav -->
+  <div class="absolute top-0 left-0 w-full flex justify-between items-center px-4 sm:px-6 md:px-8 lg:px-12 py-4 md:py-5 lg:py-6 z-30">
+    <!-- Logo + Texte -->
+    <div class="flex items-center space-x-2 sm:space-x-3 md:space-x-4 ml-4 sm:ml-8 md:ml-12 lg:ml-16">
+      <div class="rounded-full w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 flex items-center justify-center border-2 border-white">
+        <!-- Icône chapeau en blanc pur -->
+        <svg class="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg">
+          <path fill="white" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                d="M80 259.8L289.2 345.9C299 349.9 309.4 352 320 352C330.6 352 341 349.9 350.8 345.9L593.2 246.1C602.2 242.4 608 233.7 608 224C608 214.3 602.2 205.6 593.2 201.9L350.8 102.1C341 98.1 330.6 96 320 96C309.4 96 299 98.1 289.2 102.1L46.8 201.9C37.8 205.6 32 214.3 32 224L32 520C32 533.3 42.7 544 56 544C69.3 544 80 533.3 80 520L80 259.8zM128 331.5L128 448C128 501 214 544 320 544C426 544 512 501 512 448L512 331.4L369.1 390.3C353.5 396.7 336.9 400 320 400C303.1 400 286.5 396.7 270.9 390.3L128 331.4z"/>
+        </svg>
+      </div>
+      <div class="leading-tight">
+        <div class="text-white text-sm sm:text-base md:text-lg lg:text-xl font-bold">LearnDash</div>
+        <div class="text-white text-[0.6rem] xs:text-xs tracking-[0.2em] sm:tracking-[0.3em] font-semibold uppercase mt-0.5 sm:mt-1">
+          ACADEMY
+        </div>
+      </div>
     </div>
 
-    <!-- Navigation Links -->
-    <nav class="flex items-center">
-      <ul class="flex space-x-8">
-        <li><a routerLink="/" routerLinkActive="font-bold" class="text-white text-lg hover:opacity-80 transition">Home</a></li>
-        <li><a routerLink="/allcourses" routerLinkActive="font-bold" class="text-white text-lg hover:opacity-80 transition">All Courses</a></li>
-        <li><a routerLink="/about" routerLinkActive="font-bold" class="text-white text-lg hover:opacity-80 transition">About</a></li>
-        <li><a routerLink="/contact" routerLinkActive="font-bold" class="text-white text-lg hover:opacity-80 transition">Contact</a></li>
-        <li><a routerLink="/myaccount" routerLinkActive="font-bold" class="text-white text-lg hover:opacity-80 transition">My Account</a></li>
+    <!-- Navigation Desktop -->
+    <nav class="hidden md:flex items-center w-auto lg:w-1/3">
+      <ul class="flex space-x-3 md:space-x-4 lg:space-x-6">
+        <li>
+          <a routerLink="/" routerLinkActive="font-semibold"
+             [ngClass]="isDetailArticleActive ? 'text-gray-400' : 'text-white'"
+             class="text-xs md:text-sm font-medium tracking-wide hover:opacity-90 transition-colors duration-200">
+             Home
+          </a>
+        </li>
+        <li>
+          <a routerLink="/allcourses" routerLinkActive="font-semibold"
+             [ngClass]="isDetailArticleActive ? 'text-gray-400' : 'text-white'"
+             class="text-xs md:text-sm font-medium tracking-wide hover:opacity-90 transition-colors duration-200">
+             All Courses
+          </a>
+        </li>
+        <li>
+          <a routerLink="/about" routerLinkActive="font-semibold"
+             [ngClass]="isDetailArticleActive ? 'text-gray-400' : 'text-white'"
+             class="text-xs md:text-sm font-medium tracking-wide hover:opacity-90 transition-colors duration-200">
+             About
+          </a>
+        </li>
+        <li>
+          <a routerLink="/contact" routerLinkActive="font-semibold"
+             [ngClass]="isDetailArticleActive ? 'text-gray-400' : 'text-white'"
+             class="text-xs md:text-sm font-medium tracking-wide hover:opacity-90 transition-colors duration-200">
+             Contact
+          </a>
+        </li>
+        <li>
+          <a routerLink="/myaccount" routerLinkActive="font-semibold"
+             [ngClass]="isDetailArticleActive ? 'text-gray-400' : 'text-white'"
+             class="text-xs md:text-sm font-medium tracking-wide hover:opacity-90 transition-colors duration-200">
+             My Account
+          </a>
+        </li>
       </ul>
     </nav>
+
+    <!-- Menu burger pour mobile -->
+    <button (click)="toggleMobileMenu()" class="md:hidden bg-white p-2 z-40 focus:outline-none">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="menuIcon"></path>
+      </svg>
+    </button>
   </div>
 
-  <!-- Section Hero  *ngIf="isHomeActive" -->
-  <div  class="relative z-10 flex flex-1 flex-col items-center justify-center text-center px-4 pb-8 pt-8 md:pt-0">
-    <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 mt-8 md:mt-0">Learn from Industry Experts</h1>
-    <p class="text-lg md:text-2xl text-white mb-8 max-w-2xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam maximus tortor at diam gravida posuere. Curabitur et malesuada mi.</p>
-    <a href="#" class="inline-block bg-white text-blue-700 font-semibold text-lg rounded-full px-10 py-4 shadow hover:bg-blue-100 transition elementor-button elementor-size-lg">
-      <span class="elementor-button-content-wrapper">
-        <span class="elementor-button-text">View All Courses</span>
-      </span>
-    </a>
+  <!-- Menu Mobile -->
+  <div
+    class="md:hidden absolute left-0 w-full h-full z-20 transition-transform duration-300 ease-in-out"
+    [style.top.px]="mobileMenuTop"
+    [ngClass]="mobileMenuOpen ? 'translate-y-0' : '-translate-y-full'"
+  >
+    <div class="bg-white mt-12 pt-4">
+      <ul class="flex flex-col divide-y divide-gray-200">
+        <li>
+          <a routerLink="/"
+             (click)="closeMobileMenu()"
+             routerLinkActive="!text-blue-600"
+             [ngClass]="isDetailArticleActive ? 'text-gray-900' : 'text-gray-800'"
+             [routerLinkActiveOptions]="{ exact: true }"
+             class="text-sm font-medium tracking-wide block py-2 px-3 cursor-pointer">
+             Home
+          </a>
+        </li>
+        <li>
+          <a routerLink="/allcourses"
+             (click)="closeMobileMenu()"
+             routerLinkActive="!text-blue-600"
+             [ngClass]="isDetailArticleActive ? 'text-gray-900' : 'text-gray-800'"
+             class="text-sm font-medium tracking-wide block py-2 px-3 cursor-pointer">
+             All Courses
+          </a>
+        </li>
+        <li>
+          <a routerLink="/about"
+             (click)="closeMobileMenu()"
+             routerLinkActive="!text-blue-600"
+             [ngClass]="isDetailArticleActive ? 'text-gray-900' : 'text-gray-800'"
+             class="text-sm font-medium tracking-wide block py-2 px-3 cursor-pointer">
+             About
+          </a>
+        </li>
+        <li>
+          <a routerLink="/contact"
+             (click)="closeMobileMenu()"
+             routerLinkActive="!text-blue-600"
+             [ngClass]="isDetailArticleActive ? 'text-gray-900' : 'text-gray-800'"
+             class="text-sm font-medium tracking-wide block py-2 px-3 cursor-pointer">
+             Contact
+          </a>
+        </li>
+        <li>
+          <a routerLink="/myaccount"
+             (click)="closeMobileMenu()"
+             routerLinkActive="!text-blue-600"
+             [ngClass]="isDetailArticleActive ? 'text-gray-900' : 'text-gray-800'"
+             class="text-sm font-medium tracking-wide block py-2 px-3 cursor-pointer">
+             My Account
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 
+  <!-- Contenu central -->
+  <div *ngIf="!isDetailArticleActive">
+       <!-- Pour Home -->
+
+ <div [ngStyle]="{ display: isHomeActive && !mobileMenuOpen ? 'block' : 'none' }">
+  <div  class="relative z-20 flex flex-col items-center justify-center w-full text-center mx-auto flex-1 px-4 sm:px-6 md:px-8">
+    <h1 class="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-5 md:mb-6 drop-shadow-lg">Learn from Industry Experts</h1>
+    <p class="text-white text-sm sm:text-base md:text-lg lg:text-xl mb-6 sm:mb-8 md:mb-10 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-2xl mx-auto leading-normal sm:leading-relaxed">
+      {{commonCardsText}} {{commonPageText}}
+    </p>
+    <button class="bg-white text-xs sm:text-sm font-medium rounded-full px-6 sm:px-8 md:px-10 py-2 sm:py-2.5 md:py-3.5 shadow-sm sm:shadow-md"
+            style="color: rgba(4, 143, 218, 0.95);">
+      View All Courses
+    </button>
+  </div>
+ </div>
+
+ <!-- Pour All Courses -->
+ <div [ngStyle]="{ display: isAllCoursesActive && !mobileMenuOpen ? 'block' : 'none' }">
+  <div class="relative z-20 flex flex-col items-center justify-center w-full text-center mx-auto flex-1 px-4 sm:px-6 md:px-8">
+    <h1 class="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-5 md:mb-6 drop-shadow-lg">All Courses</h1>
+    <p class="text-white text-sm sm:text-base md:text-lg lg:text-xl mb-6 sm:mb-8 md:mb-10 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-2xl mx-auto leading-normal sm:leading-relaxed">
+      {{commonCardsText}} {{commonPageText}}
+    </p>
+  </div>
+ </div>
+
+ <!-- Pour About -->
+ <div [ngStyle]="{ display: isAboutActive && !mobileMenuOpen ? 'block' : 'none' }">
+  <div class="relative z-20 flex flex-col items-center justify-center w-full text-center mx-auto flex-1 px-4 sm:px-6 md:px-8">
+    <h1 class="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-5 md:mb-6 drop-shadow-lg">About Us</h1>
+    <p class="text-white text-sm sm:text-base md:text-lg lg:text-xl mb-6 sm:mb-8 md:mb-10 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-2xl mx-auto leading-normal sm:leading-relaxed">
+      {{commonCardsText}} {{commonPageText}}
+    </p>
+  </div>
+ </div>
+
+ <!-- Pour Contact -->
+ <div [ngStyle]="{ display: isContactActive && !mobileMenuOpen ? 'block' : 'none' }">
+  <div class="relative z-20 flex flex-col items-center justify-center w-full text-center mx-auto flex-1 px-4 sm:px-6 md:px-8">
+    <h1 class="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-5 md:mb-6 drop-shadow-lg">Need Help?</h1>
+    <p class="text-white text-sm sm:text-base md:text-lg lg:text-xl mb-6 sm:mb-8 md:mb-10 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-2xl mx-auto leading-normal sm:leading-relaxed">
+      {{commonCardsText}} {{commonPageText}}
+    </p>
+  </div>
+ </div>
+
+ <!-- Pour My Account -->
+ <div [ngStyle]="{ display: isMyAccountActive && !mobileMenuOpen ? 'block' : 'none' }">
+  <div class="relative z-20 flex flex-col items-center justify-center w-full text-center mx-auto flex-1 px-4 sm:px-6 md:px-8">
+    <h1 class="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-5 md:mb-6 drop-shadow-lg">My Account</h1>
+    <p class="text-white text-sm sm:text-base md:text-lg lg:text-xl mb-6 sm:mb-8 md:mb-10 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-2xl mx-auto leading-normal sm:leading-relaxed">
+      {{commonCardsText}} {{commonPageText}}
+    </p>
+  </div>
+ </div>
+
+  </div>
+</div>
+<!-- Cards avec texte et icônes légèrement agrandis -->
+<div
+  *ngIf="isHomeActive"
+  class="absolute left-0 right-0 flex justify-center z-20"
+  style="bottom: -110px;"
+>
+  <div class="max-w-6xl w-full flex flex-col md:flex-row justify-center items-stretch gap-6 md:gap-8 px-2 sm:px-4">
+    <!-- Card 1 -->
+    <div class="bg-white rounded-lg shadow-lg flex-1 flex flex-col items-center p-5 md:p-7 h-[220px] md:h-[240px]">
+      <div class="mb-4">
+        <i aria-hidden="true" class="fab fa-slideshare text-4xl" style="color: #0274be;"></i>
+      </div>
+      <h3 class="text-xl md:text-2xl font-bold text-gray-700 mb-3 text-center">Actionable Training</h3>
+      <p class="text-gray-600 text-center text-base px-3">{{commonCardsText}}</p>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="bg-white rounded-lg shadow-lg flex-1 flex flex-col items-center p-5 md:p-7 h-[220px] md:h-[240px]">
+      <div class="mb-4">
+        <i aria-hidden="true" class="fas fa-puzzle-piece text-4xl" style="color: #0274be;"></i>
+      </div>
+      <h3 class="text-xl md:text-2xl font-bold text-gray-700 mb-3 text-center">Interesting Quizzes</h3>
+      <p class="text-gray-600 text-center text-base px-3">{{commonCardsText}}</p>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="bg-white rounded-lg shadow-lg flex-1 flex flex-col items-center p-5 md:p-7 h-[220px] md:h-[240px]">
+      <div class="mb-4">
+        <i aria-hidden="true" class="fas fa-cube text-4xl" style="color: #0274be;"></i>
+      </div>
+      <h3 class="text-xl md:text-2xl font-bold text-gray-700 mb-3 text-center">Premium Material</h3>
+      <p class="text-gray-600 text-center text-base px-3">{{commonCardsText}}</p>
+    </div>
+  </div>
+</div>
+<div *ngIf="isHomeActive">
+  <div class="h-32 md:h-48 lg:h-56"></div>
+</div>
 </header>

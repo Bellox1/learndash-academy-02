@@ -1,27 +1,249 @@
-<!-- Gère la vue home -->
-<!-- Partie d'afficharge des articles -->
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-4">
+<section class="container mx-auto">
+  <!-- Feature Blocks -->
   <div
-    *ngFor="let article of articles"
-    (click)="navigateToDetail(article)"
-    class="bg-white rounded-2xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 cursor-pointer"
+    class="flex flex-col md:flex-row justify-center gap-8 -mt-16 mb-12 px-4 relative z-10"
   >
-    <img
-      [src]="article.image"
-      [alt]="article.title"
-      class="w-full h-48 object-cover"
-    />
-    <div class="p-4">
-      <h3 class="text-xl font-semibold text-gray-800 mb-2">
-        {{ article.title }}
-      </h3>
-      <p class="text-sm text-gray-500 mb-1">
-        <span class="font-medium text-gray-700">Catégorie:</span>
-        {{ article.category }}
+    <div class="bg-white rounded shadow-lg p-8 w-full md:w-80 text-center">
+      <div class="text-5xl mb-4">🤖</div>
+      <h3 class="font-bold text-xl mb-2">Actionable Training</h3>
+      <p class="text-gray-500">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       </p>
-      <p class="text-sm text-gray-500">
-        <span class="font-medium text-gray-700">Date:</span> {{ article.date }}
+    </div>
+    <div class="bg-white rounded shadow-lg p-8 w-full md:w-80 text-center">
+      <div class="text-5xl mb-4">🧩</div>
+      <h3 class="font-bold text-xl mb-2">Interesting Quizzes</h3>
+      <p class="text-gray-500">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      </p>
+    </div>
+    <div class="bg-white rounded shadow-lg p-8 w-full md:w-80 text-center">
+      <div class="text-5xl mb-4">🧊</div>
+      <h3 class="font-bold text-xl mb-2">Premium Material</h3>
+      <p class="text-gray-500">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       </p>
     </div>
   </div>
-</div>
+
+  <div class="px-4 py-8">
+    <h1 class="font-bold text-3xl mb-2 text-center">
+      Our Most Popular Courses
+    </h1>
+    <p class="text-center text-gray-600 max-w-xl mx-auto">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac eros ut
+      dui bibendum ultricies. Maecenas egestas fringilla semper.
+    </p>
+  </div>
+
+  <!-- Partie d'affichage des articles -->
+   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-4">
+    <div
+      *ngFor="let article of articles"
+      (click)="navigateToDetail(article)"
+      class="bg-white shadow-lg overflow-hidden transition-transform duration-300 cursor-pointer"
+    >
+      <div class="relative">
+        <img
+          [src]="article.image"
+          [alt]="article.title"
+          class="w-full h-48 object-cover"
+        /> 
+
+        <!-- Étiquette  -->
+        <div
+          class="absolute top-4 -left-4 bg-green-600 text-white text-sm font-semibold px-4 py-2 z-10 shadow-lg"
+        >
+          {{ article.price }}
+        </div>
+      </div>
+
+      <div class="p-4">
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">
+          {{ article.title }}
+        </h3>
+        <p class="text-sm text-gray-500 mb-1">
+          {{ article.description1 }}
+        </p>
+        <div class="flex justify-center mt-4">
+          <a href="#">
+            <button
+              type="submit"
+              class="bg-sky-500 text-white px-6 py-1 w-64 rounded-lg hover:bg-sky-600 transition text-lg font-semibold"
+            >
+              See more...
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div> 
+</section>
+
+<section>
+  <div class="px-4 py-8 mt-[160px]">
+    <h1 class="font-bold text-3xl mb-2 text-center">
+      Be in Demand with Our Professional Training
+    </h1>
+    <p class="text-center text-gray-600">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac eros ut
+      dui.
+    </p>
+  </div>
+</section>
+
+<section
+  class="flex flex-col md:flex-row items-center justify-center gap-12 py-16 px-4 bg-gray-50"
+>
+  <!-- Partie gauche : Image + nom -->
+  <div class="flex flex-col items-center md:w-1/2">
+    <img
+      src="https://websitedemos.net/learndash-academy-02/wp-content/uploads/sites/457/2019/06/manager-free-img.png"
+      alt="docteur"
+      class="h-[500px]"
+    />
+    <p class="mt-2 text-lg font-semibold text-gray-700">
+      Dr. John Smith — <span class="font-normal">Founder &amp; CEO.</span>
+    </p>
+  </div>
+
+  <!-- Partie droite : Accordéon -->
+  <div class="bg-white shadow-lg p-8 w-full md:w-1/2">
+    <div class="space-y-4">
+      <!-- Item 1 -->
+      <details class="group">
+        <summary
+          class="cursor-pointer font-semibold text-gray-800 py-2 px-4 flex items-center"
+        >
+          <span class="mr-2">&#9654;</span> Build Relevant Skills
+        </summary>
+        <div class="pl-8 pr-2 py-2 text-gray-600">
+          Click edit button to change this text. Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit.
+        </div>
+      </details>
+      <hr />
+      <!-- Item 2 -->
+      <details class="group">
+        <summary
+          class="cursor-pointer font-semibold text-gray-800 py-2 px-4 rounded hover:bg-gray-100 flex items-center"
+        >
+          <span class="mr-2">&#9654;</span> Get The Right Path From The Best
+          Learning Platform
+        </summary>
+        <div class="pl-8 pr-2 py-2 text-gray-600">
+          Click edit button to change this text. Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit.
+        </div>
+      </details>
+      <hr />
+      <!-- Item 3 -->
+      <details class="group">
+        <summary
+          class="cursor-pointer font-semibold text-gray-800 py-2 px-4 rounded hover:bg-gray-100 flex items-center"
+        >
+          <span class="mr-2">&#9654;</span> Learn From The Professionals
+        </summary>
+        <div class="pl-8 pr-2 py-2 text-gray-600">
+          Click edit button to change this text. Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="py-12 bg-white">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex items-center gap-6 flex-wrap justify-center">
+      <!-- Titre -->
+      <h2 class="text-xl font-semibold text-gray-700 whitespace-nowrap">
+        Industry Partners
+      </h2>
+
+      <!-- Ligne verticale -->
+      <div class="w-px h-32 bg-gray-300 mx-4"></div>
+
+      <!-- Logos -->
+      <img
+        src="https://websitedemos.net/learndash-academy-02/wp-content/uploads/sites/457/2021/03/logo-1.svg"
+        alt=""
+        class="h-16"
+      />
+      <img
+        src="https://websitedemos.net/learndash-academy-02/wp-content/uploads/sites/457/2021/03/logo-2.svg"
+        alt=""
+        class="h-16"
+      />
+      <img
+        src="https://websitedemos.net/learndash-academy-02/wp-content/uploads/sites/457/2021/03/logo-3.svg"
+        alt=""
+        class="h-16"
+      />
+      <img
+        src="https://websitedemos.net/learndash-academy-02/wp-content/uploads/sites/457/2021/03/logo-4.svg"
+        alt=""
+        class="h-16"
+      />
+      <img
+        src="https://websitedemos.net/learndash-academy-02/wp-content/uploads/sites/457/2021/03/logo-5.svg"
+        alt=""
+        class="h-16"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+  <section class="bg-gray-50 py-16">
+    <div class="max-w-6xl mx-auto px-2">
+      <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-[#344054]">What Our Students Have to Say</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Testimonial 1 -->
+        <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col justify-between">
+          <p class="text-gray-700 mb-8">Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+          <div class="flex items-center mt-auto">
+            <img src="https://websitedemos.net/learndash-academy-02/wp-content/uploads/sites/457/2019/05/testimonial4-free-img.jpg" alt="Kelvin Black" class="w-12 h-12 rounded-full mr-4">
+            <div>
+              <div class="font-bold text-[#344054]">Kelvin Black</div>
+              <div class="text-gray-500 text-sm">From Dallas, USA</div>
+            </div>
+          </div>
+        </div>
+        <!-- Testimonial 2 -->
+        <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col justify-between">
+          <p class="text-gray-700 mb-8">Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+          <div class="flex items-center mt-auto">
+            <img src="https://websitedemos.net/learndash-academy-02/wp-content/uploads/sites/457/2019/05/testimonial1-free-img.jpg" alt="Zasha Swan" class="w-12 h-12 rounded-full mr-4">
+            <div>
+              <div class="font-bold text-[#344054]">Zasha Swan</div>
+              <div class="text-gray-500 text-sm">From Australia</div>
+            </div>
+          </div>
+        </div>
+        <!-- Testimonial 3 -->
+        <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col justify-between">
+          <p class="text-gray-700 mb-8">Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+          <div class="flex items-center mt-auto">
+            <img src="https://websitedemos.net/learndash-academy-02/wp-content/uploads/sites/457/2019/05/testimonial3-free-img.jpg" alt="Frank Jones" class="w-12 h-12 rounded-full mr-4">
+            <div>
+              <div class="font-bold text-[#344054]">Frank Jones</div>
+              <div class="text-gray-500 text-sm">From Japan</div>
+            </div>
+          </div>
+        </div>
+        <!-- Testimonial 4 -->
+        <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col justify-between">
+          <p class="text-gray-700 mb-8">Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+          <div class="flex items-center mt-auto">
+            <img src="https://websitedemos.net/learndash-academy-02/wp-content/uploads/sites/457/2019/05/testimonial2-free-img.jpg" alt="Jack Browwn" class="w-12 h-12 rounded-full mr-4">
+            <div>
+              <div class="font-bold text-[#344054]">Jack Browwn</div>
+              <div class="text-gray-500 text-sm">From London, UK</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
