@@ -1,0 +1,14 @@
+<div class="courses-row">
+  <div *ngFor="let course of courses" class="course-card">
+    <div class="course-image-wrapper" (click)="goToDetail(course)" style="cursor:pointer;">
+      <img [src]="course.image" [alt]="course.title" class="course-image">
+      <span *ngIf="course.badge" class="course-badge">{{ course.badge }}</span>
+      <span *ngIf="course.price" class="course-badge">{{ course.price }}</span>
+    </div>
+    <div class="course-content">
+      <h3 class="course-title">{{ course.title }}</h3>
+      <p class="course-description">{{ course.description }}</p>
+      <button class="course-btn" (click)="goToDetail(course)">See more...</button>
+    </div>
+  </div>
+</div> 

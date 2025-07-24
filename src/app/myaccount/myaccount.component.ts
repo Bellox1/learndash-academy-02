@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginModalComponent } from '../login-modal/login-modal.component';
+import { CoursesComponent } from '../courses/courses.component';
 
 @Component({
   selector: 'app-myaccount',
   standalone: true,
-  imports: [CommonModule, LoginModalComponent],
+  imports: [CommonModule, CoursesComponent],
   templateUrl: './myaccount.component.html',
   styleUrl: './myaccount.component.css'
 })
