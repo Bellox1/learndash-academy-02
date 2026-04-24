@@ -31,17 +31,26 @@ Ce projet a été conçu pour perfectionner la maîtrise de la conception de vue
 ## 🚀 Installation Rapide
 
 ### 1. Prérequis
-*   Node.js 20+
-*   npm
+*   **Node.js** (v20 ou supérieure recommandé)
+*   Un gestionnaire de paquets au choix : **npm**, **yarn**, ou **pnpm**.
 
 ### 2. Installation
+Utilisez votre gestionnaire de paquets favori (**npm** est recommandé) pour installer les dépendances :
 ```bash
 npm install
+# OU
+yarn install
+# OU
+pnpm install
 ```
 
 ### 3. Lancement
 ```bash
 npm start
+# OU
+yarn start
+# OU
+pnpm start
 ```
 Accédez à l'application sur `http://localhost:4200`.
 
